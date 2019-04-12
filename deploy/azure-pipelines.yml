@@ -13,17 +13,17 @@ variables:
   - group: 'Android Signing keys'
 
 steps:
-#  - task: Gradle@2
-#    inputs:
-#      workingDirectory: ''
-#      gradleWrapperFile: 'gradlew'
-#      gradleOptions: '-Xmx3072m'
-#      javaHomeOption: 'JDKVersion'
-#      jdkVersionOption: '1.11'
-#      jdkArchitectureOption: 'x64'
-#      publishJUnitResults: false
-#      testResultsFiles: '**/TEST-*.xml'
-#      tasks: 'assembleRelease'
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.11'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: false
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'assembleRelease'
 
   - task: DownloadSecureFile@1
     inputs:
@@ -41,15 +41,15 @@ steps:
       #noProfile: true # Optional
       #noRc: true # Optional
 
-#  - task: AndroidSigning@2
-#    inputs:
-#      apkFiles: '**/*.apk'
-#      jarsign: true
-#      jarsignerKeystoreFile: '$(Agent.TempDirectory)'
-#      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
-#      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
-#      jarsignerKeyPassword: '$(KEY_PASSWORD)'
-#      zipalign: true
+  - task: AndroidSigning@2
+    inputs:
+      apkFiles: '**/*.apk'
+      jarsign: true
+      jarsignerKeystoreFile: '$(Agent.TempDirectory)/key-store.jks'
+      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
+      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
+      jarsignerKeyPassword: '$(KEY_PASSWORD)'
+      zipalign: true
 
 #  - task: CopyFiles@2
 #    inputs:
