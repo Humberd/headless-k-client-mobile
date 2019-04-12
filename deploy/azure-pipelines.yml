@@ -33,7 +33,7 @@ steps:
     inputs:
       apkFiles: '**/*.apk'
       jarsign: true
-      jarsignerKeystoreFile: '$(Agent.TempDirectory)/key-store.jks'
+      jarsignerKeystoreFile: '$(Agent.TempDirectory)'
       jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
       jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
       jarsignerKeyPassword: '$(KEY_PASSWORD)'
