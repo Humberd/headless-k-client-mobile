@@ -33,7 +33,7 @@ steps:
     inputs:
       apkFiles: '**/*.apk'
       apksign: true
-      apksignerKeystoreFile: 'e1782f6e-71ca-4387-9189-4f1ab4abb6f4'
+      apksignerKeystoreFile: 'key-store.jks'
       apksignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
       apksignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
       apksignerKeyPassword: '$(KEY_PASSWORD)'
