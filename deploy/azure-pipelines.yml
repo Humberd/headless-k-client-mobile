@@ -29,15 +29,27 @@ steps:
     inputs:
       secureFile: key-store.jks
 
-  - task: AndroidSigning@2
+  - task: Bash@3
     inputs:
-      apkFiles: '**/*.apk'
-      jarsign: true
-      jarsignerKeystoreFile: '$(Agent.TempDirectory)'
-      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
-      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
-      jarsignerKeyPassword: '$(KEY_PASSWORD)'
-      zipalign: true
+    targetType: 'inline' # Optional. Options: filePath, inline
+    #filePath: # Required when targetType == FilePath
+    #arguments: # Optional
+    script: |
+      env
+    #workingDirectory: # Optional
+    #failOnStderr: false # Optional
+    #noProfile: true # Optional
+    #noRc: true # Optional
+
+#  - task: AndroidSigning@2
+#    inputs:
+#      apkFiles: '**/*.apk'
+#      jarsign: true
+#      jarsignerKeystoreFile: '$(Agent.TempDirectory)'
+#      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
+#      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
+#      jarsignerKeyPassword: '$(KEY_PASSWORD)'
+#      zipalign: true
 
   - task: CopyFiles@2
     inputs:
