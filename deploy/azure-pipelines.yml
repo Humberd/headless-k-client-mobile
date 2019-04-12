@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+variables:
+  - group: Android Signing keys
+
 steps:
   - task: Gradle@2
     inputs:
@@ -21,6 +24,20 @@ steps:
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
+
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: key-store.jks
+
+  - task: AndroidSigning@2
+    inputs:
+      apkFiles: '**/*.apk'
+      jarsign: true
+      jarsignerKeystoreFile: '$(Agent.TempDirectory)/key-store.jks'
+      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
+      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
+      jarsignerKeyPassword: '$(KEY_PASSWORD)'
+      zipalign: true
 
   - task: CopyFiles@2
     inputs:
