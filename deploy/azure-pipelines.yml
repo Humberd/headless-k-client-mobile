@@ -28,24 +28,12 @@ steps:
   - task: DownloadSecureFile@1
     inputs:
       secureFile: key-store.jks
-#
-#  - task: Bash@3
-#    inputs:
-#      targetType: 'inline' # Optional. Options: filePath, inline
-#      #filePath: # Required when targetType == FilePath
-#      #arguments: # Optional
-#      script: |
-#        ls $AGENT_TEMPDIRECTORY
-#      #workingDirectory: # Optional
-#      #failOnStderr: false # Optional
-#      #noProfile: true # Optional
-#      #noRc: true # Optional
 
   - task: AndroidSigning@3
     inputs:
       apkFiles: '**/*.apk'
       apksign: true
-      apksignerKeystoreFile: 'key-store.jks'
+      apksignerKeystoreFile: '$(Agent.TempDirectory)/key-store.jks'
       apksignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
       apksignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
       apksignerKeyPassword: '$(KEY_PASSWORD)'
@@ -55,4 +43,5 @@ steps:
     inputs:
       contents: '**/*.apk'
       targetFolder: '$(build.artifactStagingDirectory)'
+
   - task: PublishBuildArtifacts@1
