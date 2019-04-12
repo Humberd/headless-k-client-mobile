@@ -35,7 +35,7 @@ steps:
       #filePath: # Required when targetType == FilePath
       #arguments: # Optional
       script: |
-        env
+        ls $AGENT_TEMPDIRECTORY
       #workingDirectory: # Optional
       #failOnStderr: false # Optional
       #noProfile: true # Optional
