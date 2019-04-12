@@ -44,11 +44,11 @@ steps:
   - task: AndroidSigning@3
     inputs:
       apkFiles: '**/*.apk'
-      jarsign: true
-      jarsignerKeystoreFile: 'key-store.jks'
-      jarsignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
-      jarsignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
-      jarsignerKeyPassword: '$(KEY_PASSWORD)'
+      apksign: true
+      apksignerKeystoreFile: 'key-store.jks'
+      apksignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
+      apksignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
+      apksignerKeyPassword: '$(KEY_PASSWORD)'
       zipalign: true
 
   - task: CopyFiles@2
