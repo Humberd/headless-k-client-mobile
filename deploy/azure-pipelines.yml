@@ -25,9 +25,9 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
 
-#  - task: DownloadSecureFile@1
-#    inputs:
-#      secureFile: key-store.jks
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: key-store.jks
 #
 #  - task: Bash@3
 #    inputs:
