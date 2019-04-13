@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                     Job("train", Instant.now(), JobStatus.SUCCESS),
                     Job("fight", Instant.now(), JobStatus.UNKNOWN),
                     Job("eat", Instant.now(), JobStatus.SUCCESS),
+                    Job("eat2", Instant.now(), JobStatus.SUCCESS),
                     Job("buy", Instant.now(), JobStatus.SUCCESS)
                 ))
             }
