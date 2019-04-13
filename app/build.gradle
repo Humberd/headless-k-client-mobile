@@ -4,14 +4,28 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def calcBuildId() {
+    String rawBuildId = System.getenv('BUILD_BUILDID')
+    try {
+        return Integer.parseInt(rawBuildId)
+    } catch (Exception e) {
+        println("BUILD ID '$rawBuildId' cannot be parsed to int")
+        return 1;
+    }
+}
+
+def calcVersionName() {
+    return "1.0.${calcBuildId()}"
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "pl.humberd.headlesskclientmobile"
         minSdkVersion 26
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode calcBuildId()
+        versionName calcVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

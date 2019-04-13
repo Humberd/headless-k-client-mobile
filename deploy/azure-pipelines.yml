@@ -37,6 +37,8 @@ steps:
       apksignerKeystorePassword: '$(KEYSTORE_PASSWORD)'
       apksignerKeystoreAlias: '$(KEYSTORE_ALIAS)'
       apksignerKeyPassword: '$(KEY_PASSWORD)'
+      # When it was set to true the task threw this error:
+      # zipalign: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
       zipalign: false
 
   - task: CopyFiles@2

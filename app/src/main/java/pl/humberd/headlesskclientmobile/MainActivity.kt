@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
                 return Observable.just(listOf(
                     Job("work", Instant.now(), JobStatus.FAILED),
                     Job("train", Instant.now(), JobStatus.SUCCESS),
-                    Job("fight", Instant.now(), JobStatus.UNKNOWN)
+                    Job("fight", Instant.now(), JobStatus.UNKNOWN),
+                    Job("buy", Instant.now(), JobStatus.SUCCESS)
                 ))
             }
         }
