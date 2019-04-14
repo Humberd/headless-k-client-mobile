@@ -6,7 +6,35 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/myToolbar"
+            android:theme="@style/ToolbarTheme">
+
+
+        <TextView
+                android:text="TextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                style="@style/ActionBarTitle"
+                android:id="@+id/toolbarTitle"/>
+
+        <fragment
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:name="pl.humberd.headlesskclientmobile.WorkerStatus"
+                android:id="@+id/workerStatusFragment"
+                />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
     <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_below="@id/myToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swiperefresh">
