@@ -26,7 +26,7 @@ class RecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("RecycleViewAdapter", "onBindViewHolder: called");
+//        Log.d("RecycleViewAdapter", "onBindViewHolder: called");
 
         val job = jobs.get(position)
 

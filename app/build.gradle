@@ -18,6 +18,26 @@ def calcVersionName() {
     return "1.0.${calcBuildId()}"
 }
 
+def getServerUrl() {
+    def serverUrl = System.getenv("SERVER_URL");
+    if (serverUrl == null) {
+        println("------------- SERVER_URL has not been set ---------------")
+        return "\"\""
+    }
+
+    return "\"${serverUrl}\"";
+}
+
+def getClientToken() {
+    def clientToken = System.getenv("CLIENT_TOKEN");
+    if (clientToken == null) {
+        println("------------- CLIENT_TOKEN has not been set ---------------")
+        return "\"\""
+    }
+
+    return "\"${clientToken}\"";
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -30,8 +50,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "SERVER_URL", getServerUrl())
+            buildConfigField("String", "CLIENT_TOKEN", getClientToken())
+        }
+
+        debug {
+            buildConfigField("String", "SERVER_URL", "\"http://10.0.2.2:3000\"")
+            buildConfigField("String", "CLIENT_TOKEN", "\"abc\"")
         }
     }
 }
@@ -40,6 +68,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "com.android.support:support-compat:28.0.0"
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -72,3 +103,5 @@ configurations.all {
         }
     }
 }
+
+apply plugin: 'com.google.gms.google-services'
