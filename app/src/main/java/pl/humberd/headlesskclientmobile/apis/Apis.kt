@@ -35,36 +35,4 @@ object Apis {
 
         return retrofit
     }
-//    val worker = getWorkerApi()
-//    
-//
-//    private fun getWorkerApi(): WorkerAPI {
-//        val gson = GsonBuilder()
-//            .registerTypeAdapter(Instant::class.java, InstantTypeConverter)
-//            .create()
-//
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("http://10.0.2.2:3231")
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .build()
-//
-////        return retrofit.create()
-//        return object : WorkerAPI {
-//            override fun getJobs(): Observable<List<Job>> {
-//                return Observable.just(
-//                    listOf(
-//                        Job("work", Instant.now(), JobStatus.FAILED),
-//                        Job("train", Instant.now(), JobStatus.SUCCESS),
-//                        Job("fight", Instant.now(), JobStatus.UNKNOWN),
-//                        Job("eat", Instant.now(), JobStatus.SUCCESS),
-//                        Job("eat2", Instant.now(), JobStatus.SUCCESS),
-//                        Job("eat2", Instant.now(), JobStatus.SUCCESS),
-//                        Job("eat2", Instant.now(), JobStatus.SUCCESS),
-//                        Job("buy", Instant.now(), JobStatus.SUCCESS)
-//                    )
-//                )
-//            }
-//        }
-//    }
 }

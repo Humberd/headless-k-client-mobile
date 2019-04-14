@@ -87,17 +87,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getWorkerApi(): WorkerAPI {
-        val gson = GsonBuilder()
-            .registerTypeAdapter(Instant::class.java, InstantTypeConverter)
-            .create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3231")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-//        return retrofit.create()
         return object : WorkerAPI {
             override fun getJobs(): Observable<List<Job>> {
                 return Observable.just(listOf(
