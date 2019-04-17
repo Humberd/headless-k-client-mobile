@@ -14,8 +14,8 @@ variables:
   - group: 'Runtime data'
   - name: SERVER_URL
     value: '$(SERVER_DOMAIN)'
-  - name: CLIENT_TOKEN
-    value: '$(SECRET_CLIENT_TOKEN)'
+  - name: CLIENT_TOKEN2
+    value: '$(CLIENT_TOKEN)'
 
 steps:
   - task: DownloadSecureFile@1
@@ -25,18 +25,6 @@ steps:
   - task: DownloadSecureFile@1
     inputs:
       secureFile: google-services.json
-
-  - task: Bash@3
-    inputs:
-      targetType: 'inline' # Optional. Options: filePath, inline
-      #filePath: # Required when targetType == FilePath
-      #arguments: # Optional
-      script: |
-        env
-      #workingDirectory: # Optional
-      #failOnStderr: false # Optional
-      #noProfile: true # Optional
-      #noRc: true # Optional
 
   - task: CopyFiles@2
     inputs:
