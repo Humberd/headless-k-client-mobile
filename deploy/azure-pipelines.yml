@@ -24,9 +24,9 @@ steps:
       Write-Host "This does not work: $env:CLIENT_TOKEN"
 
       # Using the mapped env var:
-      Write-Host "This works: $env:MY_MAPPED_ENV_VAR"    # Recommended
+      Write-Host "This works: $env:CLIENT_TOKEN"    # Recommended
     env:
-      MY_MAPPED_ENV_VAR: $(CLIENT_TOKEN)
+      CLIENT_TOKEN: $(CLIENT_TOKEN)
 
 #  - task: DownloadSecureFile@1
 #    inputs:
