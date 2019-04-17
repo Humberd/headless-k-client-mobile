@@ -22,7 +22,7 @@ object Apis {
         val okHttpClientBuilder = OkHttpClient.Builder()
             .addInterceptor {
                 val request = it.request()
-                val newRequest = request.newBuilder().header("Authorization", "abc")
+                val newRequest = request.newBuilder().header("Authorization", BuildConfig.CLIENT_TOKEN)
                 return@addInterceptor it.proceed(newRequest.build())
             }
 

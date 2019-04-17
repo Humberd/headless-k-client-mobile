@@ -14,6 +14,8 @@ variables:
   - group: 'Runtime data'
   - name: SERVER_URL
     value: '$(SERVER_DOMAIN)'
+  - name: CLIENT_TOKEN
+    value: 'abc'
 
 steps:
   - task: DownloadSecureFile@1
