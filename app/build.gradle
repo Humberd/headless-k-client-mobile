@@ -29,9 +29,9 @@ def getServerUrl() {
 }
 
 def getClientToken() {
-    def clientToken = System.getenv("CLIENT_TOKEN2");
+    def clientToken = System.getenv("CLIENT_TOKEN");
     if (clientToken == null || clientToken.isEmpty()) {
-        println("------------- CLIENT_TOKEN2 has not been set ---------------")
+        println("------------- CLIENT_TOKEN has not been set ---------------")
         return "\"\""
     }
 
