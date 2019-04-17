@@ -36,6 +36,7 @@ object Apis {
             .build()
 
         Log.d(TAG, "SERVER_URL: ${BuildConfig.SERVER_URL}")
+        Log.d(TAG, "CLIENT_TOKEN: ${BuildConfig.CLIENT_TOKEN}")
 
         return retrofit
     }
