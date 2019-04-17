@@ -11,8 +11,22 @@ pool:
 
 variables:
   - group: 'Android Signing keys'
+  - group: 'Runtime data'
+  - name: SERVER_URL
+    value: '$(SERVER_DOMAIN)'
+  - name: CLIENT_TOKEN
+    value: '$(CLIENT_TOKEN)'
 
 steps:
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: google-services.json
+
+  - task: CopyFiles@2
+    inputs:
+      contents: '$(Agent.TempDirectory)/google.services.json'
+      targetFolder: 'app'
+
   - task: Gradle@2
     inputs:
       workingDirectory: ''

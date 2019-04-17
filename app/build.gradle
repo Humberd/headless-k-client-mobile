@@ -19,7 +19,7 @@ def calcVersionName() {
 }
 
 def getServerUrl() {
-    def serverUrl = System.getenv("SERVER_URL");
+    def serverUrl = System.getenv("SERVER_URL")
     if (serverUrl == null) {
         println("------------- SERVER_URL has not been set ---------------")
         return "\"\""
