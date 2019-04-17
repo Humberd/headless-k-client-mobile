@@ -30,7 +30,7 @@ steps:
     inputs:
       sourceFolder: '$(Agent.TempDirectory)'
       contents: 'google-services.json'
-      targetFolder: 'app'
+      targetFolder: '$(Build.SourcesDirectory)/app'
 
   - task: Gradle@2
     inputs:
