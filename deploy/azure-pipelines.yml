@@ -41,7 +41,7 @@ steps:
       tasks: 'assembleRelease'
     env:
       CLIENT_TOKEN: $(CLIENT_TOKEN)
-      SERVER_URL: $(SERVER_DOMAIN)
+      SERVER_URL: 'https://$(SERVER_DOMAIN)'
 
   - task: AndroidSigning@3
     inputs:
