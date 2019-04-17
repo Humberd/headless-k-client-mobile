@@ -58,7 +58,8 @@ android {
         }
 
         debug {
-            buildConfigField("String", "SERVER_URL", "\"http://10.0.2.2:3000\"")
+            buildConfigField("String", "SERVER_URL", "\"https://server.headless-k.quazarus.com\"")
+//            buildConfigField("String", "SERVER_URL", "\"http://10.0.2.2:3000\"")
             buildConfigField("String", "CLIENT_TOKEN", "\"abc\"")
         }
     }

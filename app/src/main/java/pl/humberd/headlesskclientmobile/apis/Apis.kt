@@ -1,5 +1,6 @@
 package pl.humberd.headlesskclientmobile.apis
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import pl.humberd.headlesskclientmobile.BuildConfig
@@ -9,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object Apis {
+    private val TAG = "APIS";
     val status: StatusApi = this.getApi()
 
     private inline fun <reified T> getApi(): T {
@@ -32,6 +34,8 @@ object Apis {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
+
+        Log.d(TAG, "SERVER_URL: ${BuildConfig.SERVER_URL}")
 
         return retrofit
     }
