@@ -20,11 +20,16 @@ variables:
 steps:
   - task: DownloadSecureFile@1
     inputs:
+      secureFile: key-store.jks
+
+  - task: DownloadSecureFile@1
+    inputs:
       secureFile: google-services.json
 
   - task: CopyFiles@2
     inputs:
-      contents: '$(Agent.TempDirectory)/google-services.json'
+      sourceFolder: '$(Agent.TempDirectory)'
+      contents: 'google-services.json'
       targetFolder: 'app'
 
   - task: Gradle@2
@@ -38,10 +43,6 @@ steps:
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
-
-  - task: DownloadSecureFile@1
-    inputs:
-      secureFile: key-store.jks
 
   - task: AndroidSigning@3
     inputs:
