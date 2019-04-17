@@ -12,8 +12,6 @@ pool:
 variables:
   - group: 'Android Signing keys'
   - group: 'Runtime data'
-  - name: SERVER_URL
-    value: '$(SERVER_DOMAIN)'
 
 steps:
   - task: DownloadSecureFile@1
@@ -43,6 +41,7 @@ steps:
       tasks: 'assembleRelease'
     env:
       CLIENT_TOKEN: $(CLIENT_TOKEN)
+      SERVER_URL: $(SERVER_DOMAIN)
 
   - task: AndroidSigning@3
     inputs:
