@@ -20,7 +20,7 @@ def calcVersionName() {
 
 def getServerUrl() {
     def serverUrl = System.getenv("SERVER_URL")
-    if (serverUrl == null) {
+    if (serverUrl == null || serverUrl.isEmpty()) {
         println("------------- SERVER_URL has not been set ---------------")
         return "\"\""
     }
@@ -30,7 +30,7 @@ def getServerUrl() {
 
 def getClientToken() {
     def clientToken = System.getenv("CLIENT_TOKEN");
-    if (clientToken == null) {
+    if (clientToken == null || clientToken.isEmpty()) {
         println("------------- CLIENT_TOKEN has not been set ---------------")
         return "\"\""
     }
