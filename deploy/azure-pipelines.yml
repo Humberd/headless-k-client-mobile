@@ -14,21 +14,19 @@ variables:
   - group: 'Runtime data'
   - name: SERVER_URL
     value: '$(SERVER_DOMAIN)'
-  - name: CLIENT_TOKEN
-    value: 'abc'
 
 steps:
   - powershell: |
       # Using an input-macro:
-      Write-Host "This works: $(WORKER_TOKEN)"
+      Write-Host "This works: $(CLIENT_TOKEN)"
 
       # Using the env var directly:
-      Write-Host "This does not work: $env:WORKER_TOKEN"
+      Write-Host "This does not work: $env:CLIENT_TOKEN"
 
       # Using the mapped env var:
       Write-Host "This works: $env:MY_MAPPED_ENV_VAR"    # Recommended
     env:
-      MY_MAPPED_ENV_VAR: $(WORKER_TOKEN)
+      MY_MAPPED_ENV_VAR: $(CLIENT_TOKEN)
 
 #  - task: DownloadSecureFile@1
 #    inputs:
