@@ -51,7 +51,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             buildConfigField("String", "SERVER_URL", getServerUrl())
             buildConfigField("String", "CLIENT_TOKEN", getClientToken())
