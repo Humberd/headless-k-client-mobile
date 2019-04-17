@@ -3,11 +3,13 @@ package pl.humberd.headlesskclientmobile.apis
 import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import pl.humberd.headlesskclientmobile.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+
 
 object Apis {
     private val TAG = "APIS";
@@ -21,7 +23,12 @@ object Apis {
         val gson = GsonBuilder()
             .create()
 
+        val logging = HttpLoggingInterceptor()
+// set your desired log level
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
         val okHttpClientBuilder = OkHttpClient.Builder()
+            .addInterceptor(logging)
             .addInterceptor {
                 val request = it.request()
                 val newRequest = request.newBuilder().header("Authorization", BuildConfig.CLIENT_TOKEN)

@@ -93,6 +93,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
 
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+
+//    newer versions for logging-interceptor fuck up the runtime
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 }
 
 configurations.all {
