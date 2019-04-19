@@ -3,8 +3,15 @@ package pl.humberd.headlesskclientmobile
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import io.reactivex.android.schedulers.AndroidSchedulers
+import pl.humberd.headlesskclientmobile.apis.Apis
+import pl.humberd.headlesskclientmobile.apis.FcmUpdateRequest
 
 enum class WorkerStatfus(
     val icon: Int,
@@ -32,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         workerStatusIcon = findViewById(R.id.workerStatusIcon)
         workerStatusProgressBar = findViewById(R.id.workerStatusProgressBar)
 
+        registerFcmTokenToServer()
+
 
 //        swiperefresh.isRefreshing = true
 //        swiperefresh.setOnRefreshListener {
@@ -54,29 +63,42 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 //        menuInflater.inflate(R.menu.menu_items, menu)
 //        return true
 //    }
 //
-//    fun getToken() {
-//        FirebaseInstanceId.getInstance().instanceId
-//            .addOnCompleteListener(OnCompleteListener { task ->
-//                if (!task.isSuccessful) {
-//                    Log.w(TAG, "getInstanceId failed", task.exception)
-//                    return@OnCompleteListener
-//                }
-//
-//                // Get new Instance ID token
-//                val token = task.result?.token
-//
-//                // Log and toast
-//                val msg = token
-//                Log.d(TAG, msg)
-//                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-//            })
-//    }
-//
+    fun registerFcmTokenToServer() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.e(TAG, "getInstanceId failed", task.exception)
+                    Toast.makeText(baseContext, "getInstanceId failed while getting FCM", Toast.LENGTH_LONG).show()
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                if (token === null) {
+                    Log.e(TAG, "FCM token is null")
+                    Toast.makeText(baseContext, "FCM token is null", Toast.LENGTH_LONG).show()
+                    return@OnCompleteListener
+                }
+
+                Apis.tokens.updateFcmToken(FcmUpdateRequest(token))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Log.d(TAG, "Successfully sent FCM token")
+                    }, {
+                        Log.e(TAG, "Error while sending FCM token", it)
+                        Toast.makeText(baseContext, "Error while sending FCM token: ${it.message}", Toast.LENGTH_LONG).show()
+
+                    })
+            })
+    }
+
+    //
 //    @SuppressLint("CheckResult")
 //    fun getJobs(success: (List<Job>) -> Any) {
 //        workerAPI.getJobs()
@@ -90,9 +112,9 @@ class MainActivity : AppCompatActivity() {
 //            })
 //    }
 //
-//    companion object {
-//        val TAG = "MainActivity"
-//    }
+    companion object {
+        val TAG = "MainActivity"
+    }
 //
 //    private fun getWorkerApi(): WorkerAPI {
 //        return object : WorkerAPI {
