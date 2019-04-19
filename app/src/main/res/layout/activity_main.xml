@@ -14,7 +14,7 @@
 
 
         <TextView
-                android:text="TextView2"
+                android:text="@string/headless_k_client"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"

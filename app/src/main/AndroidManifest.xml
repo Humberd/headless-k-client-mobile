@@ -13,11 +13,6 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
-        <service
-                android:name=".NotificationReceiver"
-                android:enabled="true"
-                android:exported="true">
-        </service>
 
         <activity
                 android:name=".MainActivity">

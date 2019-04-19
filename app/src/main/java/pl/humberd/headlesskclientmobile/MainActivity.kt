@@ -1,6 +1,5 @@
 package pl.humberd.headlesskclientmobile
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var workerStatusIcon: ImageView;
     lateinit var workerStatusProgressBar: ProgressBar;
 
-    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
