@@ -12,5 +12,6 @@ interface StatusApi {
 
 data class StatusDto(
     val version: String,
-    val status: String
+    val status: String,
+    val message: String?
 )
