@@ -28,7 +28,7 @@ enum class WorkerStatusEnum(
 ) {
 
     OK(R.drawable.ic_check_circle_black_24dp, "#00ff00", "Worker performs OK"),
-    FATAL_ERROR(R.drawable.ic_error_black_24dp, "#ff00ff", "Worker has been shut down and is waiting for intervention"),
+    FATAL_ERROR(R.drawable.ic_error_black_24dp, "#ff00ff", "Worker has been shut down."),
     WORKER_DISCONNECTED(R.drawable.ic_phonelink_erase_black_24dp, "#757575", "Worker Disconnected"),
     BACKEND_DISCONNECTED(R.drawable.ic_phonelink_off_black_24dp, "#757575", "Backend Disconnected"),
     UNKNOWN_STATUS(R.drawable.ic_battery_unknown_black_24dp, "#757575", "Unknown response:");
@@ -112,7 +112,11 @@ class WorkerStatus : Fragment() {
     fun onStatusReceive(statusDto: StatusDto) {
         when (statusDto.status.toUpperCase()) {
             "OK" -> updateStatus(WorkerStatusEnum.OK)
-            "FATAL_ERROR" -> updateStatus(WorkerStatusEnum.FATAL_ERROR)
+            "FATAL_ERROR" -> {
+                val status = WorkerStatusEnum.FATAL_ERROR
+                status.errorMessage = if (statusDto.message !== null) statusDto.message else ""
+                updateStatus(status)
+            }
             "DISCONNECTED" -> updateStatus(WorkerStatusEnum.WORKER_DISCONNECTED)
             else -> {
                 val status = WorkerStatusEnum.UNKNOWN_STATUS
