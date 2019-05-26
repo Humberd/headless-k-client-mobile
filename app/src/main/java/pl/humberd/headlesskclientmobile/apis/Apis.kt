@@ -15,6 +15,7 @@ object Apis {
     private val TAG = "APIS";
     val status: StatusApi = this.getApi()
     val tokens: TokensApi = this.getApi()
+    val jobStatus: JobStatusApi = this.getApi()
 
     private inline fun <reified T> getApi(): T {
         return this.getRetrofit().create()

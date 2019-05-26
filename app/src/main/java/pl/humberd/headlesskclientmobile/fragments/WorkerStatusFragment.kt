@@ -1,6 +1,5 @@
-package pl.humberd.headlesskclientmobile
+package pl.humberd.headlesskclientmobile.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -16,6 +15,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import pl.humberd.headlesskclientmobile.R
 import pl.humberd.headlesskclientmobile.apis.Apis
 import pl.humberd.headlesskclientmobile.apis.StatusDto
 import java.util.concurrent.TimeUnit
@@ -40,7 +40,7 @@ enum class WorkerStatusEnum(
     }
 }
 
-class WorkerStatus : Fragment() {
+class WorkerStatusFragment : Fragment() {
     val refreshSubject = PublishSubject.create<Any>()
     val destroySubject = PublishSubject.create<Any>()
 
@@ -48,12 +48,6 @@ class WorkerStatus : Fragment() {
     lateinit var workerStatusProgressBar: ProgressBar;
 
     private lateinit var currentStatus: WorkerStatusEnum;
-
-
-    @SuppressLint("CheckResult")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +72,6 @@ class WorkerStatus : Fragment() {
         super.onDestroyView()
 
         destroySubject.onNext(true);
-
     }
 
     fun subscribe(): Disposable {

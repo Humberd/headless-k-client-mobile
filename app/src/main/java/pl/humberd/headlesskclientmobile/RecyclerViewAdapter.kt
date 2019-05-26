@@ -1,22 +1,21 @@
 package pl.humberd.headlesskclientmobile
 
-import android.content.Context
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
-import com.bumptech.glide.Glide
-import de.hdodenhof.circleimageview.CircleImageView
 import org.ocpsoft.prettytime.PrettyTime
+import pl.humberd.headlesskclientmobile.apis.JobStatus
+import pl.humberd.headlesskclientmobile.apis.JobStatusDto
 import java.util.*
 
 class RecyclerViewAdapter(
-    private val context: Context,
-    private val jobs: List<Job>
+    private val jobs: List<JobStatusDto>
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val prettyTime = PrettyTime()
 
@@ -25,24 +24,42 @@ class RecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Log.d("RecycleViewAdapter", "onBindViewHolder: called");
 
         val job = jobs.get(position)
-
-        Glide.with(context)
-            .asBitmap()
-            .load(job.status.src)
-            .into(holder.jobStatus)
-
-        holder.jobName.text = job.name
-
-        val jobDate = Date.from(job.lastSuccess);
-        holder.lastSuccess.text = "Last success: ${prettyTime.format(jobDate)}"
-
-        holder.parentLayout.setOnClickListener {
-            Toast.makeText(context, "Clicked ${job.name}", Toast.LENGTH_LONG).show()
+        holder.name.text = job.name
+        holder.lastSuccess.text = if (job.lastSuccess === null) {
+            "---"
+        } else {
+            prettyTime.format(Date(job.lastSuccess))
         }
+
+        holder.lastCheck.text = if (job.lastCheck === null) {
+            "---"
+        } else {
+            prettyTime.format(Date(job.lastCheck))
+        }
+
+        holder.parentLayout.setBackgroundColor(
+            Color.parseColor(
+                when (job.status) {
+                    JobStatus.SUCCESS,
+                    JobStatus.ALREADY_DONE -> "#FFFFFF"
+                    JobStatus.ERROR -> "#FFCACC"
+                }
+            )
+        )
+
+        holder.status.setImageResource(
+            when (job.status) {
+                JobStatus.SUCCESS,
+                JobStatus.ALREADY_DONE -> R.drawable.ic_check_black_24dp
+                JobStatus.ERROR -> R.drawable.ic_close_black_24dp
+            }
+        )
+
     }
 
     override fun getItemCount(): Int {
@@ -54,17 +71,11 @@ class RecyclerViewAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val jobStatus: CircleImageView
-        val jobName: TextView
-        val lastSuccess: TextView
-        val parentLayout: RelativeLayout
-
-        init {
-            jobStatus = itemView.findViewById(R.id.job_status)
-            jobName = itemView.findViewById(R.id.job_name)
-            lastSuccess = itemView.findViewById(R.id.job_last_success)
-            parentLayout = itemView.findViewById(R.id.job_item_layout)
-        }
+        val status: ImageView = itemView.findViewById(R.id.job_status_icon)
+        val name: TextView = itemView.findViewById(R.id.job_name)
+        val lastSuccess: TextView = itemView.findViewById(R.id.job_last_success)
+        val lastCheck: TextView = itemView.findViewById(R.id.job_last_check)
+        val parentLayout: RelativeLayout = itemView.findViewById(R.id.job_item_layout)
     }
 
 }
