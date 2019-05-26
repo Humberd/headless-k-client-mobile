@@ -7,34 +7,74 @@
                 android:id="@+id/job_item_layout">
 
     <RelativeLayout
+            android:id="@+id/job_info_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:id="@+id/job_info_group">
+            android:layout_alignParentStart="true">
 
-        <TextView
+        <RelativeLayout
+                android:id="@+id/top_segment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/job_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Work"
+                    android:textColor="#000"
+                    android:textSize="18sp"/>
+
+            <ImageView
+                    android:id="@+id/time_interval_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/job_name"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    android:layout_marginStart="18dp"
+                    android:tint="#414141"
+                    />
+
+            <TextView
+                    android:id="@+id/time_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/time_interval_icon"
+                    android:layout_marginStart="5dp"
+                    android:text="5 min"
+                    />
+
+        </RelativeLayout>
+
+        <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/job_name"
-                android:text="Work"
-                android:textColor="#000"
-                android:textSize="18sp"/>
+                android:layout_below="@id/top_segment">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/job_last_success"
-                android:text="Last Success: 2hr ago"
-                android:layout_below="@id/job_name"/>
+            <TextView
+                    android:id="@+id/job_last_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Success: 2hr ago"/>
+
+            <TextView
+                    android:id="@+id/job_last_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/job_last_success"
+                    android:text="Last Check: 5 min ago"
+                    android:layout_marginStart="18dp"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/job_status"
-            android:src="@mipmap/ic_launcher"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:id="@+id/job_status"-->
+<!--            android:src="@mipmap/ic_launcher"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"/>-->
 
 
 </RelativeLayout>
