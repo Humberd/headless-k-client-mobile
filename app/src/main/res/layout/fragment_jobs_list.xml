@@ -5,25 +5,18 @@
              android:layout_height="match_parent"
              tools:context=".fragments.JobsListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:id="@+id/swiperefresh">
+
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/job_list_recycle_view">
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
 
-
-<!--<android.support.v4.widget.SwipeRefreshLayout-->
-<!--android:layout_below="@id/myToolbar"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:id="@+id/swiperefresh">-->
-
-<!--<android.support.v7.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/recycler_view">-->
-<!--</android.support.v7.widget.RecyclerView>-->
-
-<!--</android.support.v4.widget.SwipeRefreshLayout>-->
