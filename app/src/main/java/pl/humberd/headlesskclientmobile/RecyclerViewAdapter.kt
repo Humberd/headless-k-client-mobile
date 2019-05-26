@@ -30,15 +30,14 @@ class RecyclerViewAdapter(
 
         val job = jobs.get(position)
         holder.name.text = job.name
-        holder.timeInterval.text = "${job.timeInterval / 1000 / 60} min"
         holder.lastSuccess.text = if (job.lastSuccess === null) {
-            ""
+            "---"
         } else {
             prettyTime.format(Date(job.lastSuccess))
         }
 
         holder.lastCheck.text = if (job.lastCheck === null) {
-            ""
+            "---"
         } else {
             prettyTime.format(Date(job.lastCheck))
         }
@@ -61,24 +60,6 @@ class RecyclerViewAdapter(
             }
         )
 
-//        when (job.status) {
-//            JobStatus.SUCCESS,
-//            JobStatus.ALREADY_DONE ->
-//        }
-
-//        Glide.with(context)
-//            .asBitmap()
-//            .load(job.status.src)
-//            .into(holder.jobStatus)
-//
-//        holder.jobName.text = job.name
-//
-//        val jobDate = Date.from(job.lastSuccess);
-//        holder.lastSuccess.text = "Last success: ${prettyTime.format(jobDate)}"
-//
-//        holder.parentLayout.setOnClickListener {
-//            Toast.makeText(context, "Clicked ${job.name}", Toast.LENGTH_LONG).show()
-//        }
     }
 
     override fun getItemCount(): Int {
@@ -92,7 +73,6 @@ class RecyclerViewAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val status: ImageView = itemView.findViewById(R.id.job_status_icon)
         val name: TextView = itemView.findViewById(R.id.job_name)
-        val timeInterval: TextView = itemView.findViewById(R.id.time_interval)
         val lastSuccess: TextView = itemView.findViewById(R.id.job_last_success)
         val lastCheck: TextView = itemView.findViewById(R.id.job_last_check)
         val parentLayout: RelativeLayout = itemView.findViewById(R.id.job_item_layout)

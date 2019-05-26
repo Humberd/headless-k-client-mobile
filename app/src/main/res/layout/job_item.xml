@@ -13,6 +13,7 @@
             app:srcCompat="@drawable/ic_check_black_24dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
+            android:tint="#535353"
             />
 
     <RelativeLayout
@@ -35,67 +36,52 @@
                     android:textColor="#000"
                     android:textSize="17sp"/>
 
-            <ImageView
-                    android:id="@+id/time_interval_icon"
-                    android:layout_width="18dp"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/job_name"
-                    app:srcCompat="@drawable/ic_refresh_black_24dp"
-                    android:layout_marginStart="18dp"
-                    android:tint="#414141"
-                    android:layout_centerInParent="true"
-                    />
-
-            <TextView
-                    android:id="@+id/time_interval"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/time_interval_icon"
-                    android:layout_marginStart="3dp"
-                    android:text="5 min"
-                    android:layout_centerInParent="true"
-                    />
-
         </RelativeLayout>
 
-        <RelativeLayout
+        <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/top_segment">
+                android:layout_below="@id/top_segment"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                >
 
-            <TextView
-                    android:id="@+id/job_last_success_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Last success: "/>
-
-            <TextView
-                    android:id="@+id/job_last_success"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/job_last_success_label"
-                    android:layout_marginStart="2dp"
-                    android:text="2hr ago"/>
-
-            <TextView
+            <ImageView
                     android:id="@+id/job_last_check_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/job_last_success"
-                    android:layout_marginStart="15dp"
-                    android:text="Last check: "/>
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    app:srcCompat="@drawable/ic_refresh_black_24dp"
+                    android:tint="#535353"
+                    android:layout_marginEnd="3dp"
+                    />
 
             <TextView
                     android:id="@+id/job_last_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/job_last_check_label"
+                    android:layout_marginStart="2dp"
+                    android:text="2hr ago"/>
+
+            <ImageView
+                    android:id="@+id/job_last_success_label"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    app:srcCompat="@drawable/ic_check_black_24dp"
+                    android:layout_marginStart="10dp"
+                    android:tint="#535353"
+                    android:layout_marginEnd="3dp"
+                    />
+
+            <TextView
+                    android:id="@+id/job_last_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:text="2 min ago"/>
 
 
 
-        </RelativeLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
     </RelativeLayout>
 
 </RelativeLayout>
