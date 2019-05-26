@@ -14,10 +14,10 @@ data class JobStatusDto(
     val id: String,
     val name: String,
     val status: JobStatus,
-    val timeInterval: Int,
-    val lastCheck: Int? = null,
-    val lastError: Int? = null,
-    val lastSuccess: Int? = null
+    val timeInterval: Long,
+    val lastCheck: Long? = null,
+    val lastError: Long? = null,
+    val lastSuccess: Long? = null
 )
 
 enum class JobStatus {
