@@ -41,6 +41,7 @@ class JobsListFragment : Fragment() {
         swipeRefresh.isRefreshing = true
 
         Apis.jobStatus.getJobStatusList()
+            .map { it.sortedBy { jobStatusDto: JobStatusDto -> jobStatusDto.name } }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 initRecyclerView(it)
