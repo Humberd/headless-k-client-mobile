@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import org.ocpsoft.prettytime.PrettyTime
+import pl.humberd.headlesskclientmobile.apis.JobStatus
 import pl.humberd.headlesskclientmobile.apis.JobStatusDto
 import java.util.*
 
@@ -41,9 +43,23 @@ class RecyclerViewAdapter(
             prettyTime.format(Date(job.lastCheck))
         }
 
-        val color = "#ffffff"
+        holder.parentLayout.setBackgroundColor(
+            Color.parseColor(
+                when (job.status) {
+                    JobStatus.SUCCESS,
+                    JobStatus.ALREADY_DONE -> "#FFFFFF"
+                    JobStatus.ERROR -> "#FFCACC"
+                }
+            )
+        )
 
-        holder.parentLayout.setBackgroundColor(Color.parseColor("#ffffff"))
+        holder.status.setImageResource(
+            when (job.status) {
+                JobStatus.SUCCESS,
+                JobStatus.ALREADY_DONE -> R.drawable.ic_check_black_24dp
+                JobStatus.ERROR -> R.drawable.ic_close_black_24dp
+            }
+        )
 
 //        when (job.status) {
 //            JobStatus.SUCCESS,
@@ -74,6 +90,7 @@ class RecyclerViewAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val status: ImageView = itemView.findViewById(R.id.job_status_icon)
         val name: TextView = itemView.findViewById(R.id.job_name)
         val timeInterval: TextView = itemView.findViewById(R.id.time_interval)
         val lastSuccess: TextView = itemView.findViewById(R.id.job_last_success)
