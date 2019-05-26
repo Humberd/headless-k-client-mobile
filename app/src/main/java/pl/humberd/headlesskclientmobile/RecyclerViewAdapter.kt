@@ -1,22 +1,19 @@
 package pl.humberd.headlesskclientmobile
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
-import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import org.ocpsoft.prettytime.PrettyTime
-import java.util.*
 
 class RecyclerViewAdapter(
     private val context: Context,
-    private val jobs: List<Job>
+    private val jobs: List<Any>
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val prettyTime = PrettyTime()
 
@@ -25,24 +22,25 @@ class RecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Log.d("RecycleViewAdapter", "onBindViewHolder: called");
 
         val job = jobs.get(position)
 
-        Glide.with(context)
-            .asBitmap()
-            .load(job.status.src)
-            .into(holder.jobStatus)
-
-        holder.jobName.text = job.name
-
-        val jobDate = Date.from(job.lastSuccess);
-        holder.lastSuccess.text = "Last success: ${prettyTime.format(jobDate)}"
-
-        holder.parentLayout.setOnClickListener {
-            Toast.makeText(context, "Clicked ${job.name}", Toast.LENGTH_LONG).show()
-        }
+//        Glide.with(context)
+//            .asBitmap()
+//            .load(job.status.src)
+//            .into(holder.jobStatus)
+//
+//        holder.jobName.text = job.name
+//
+//        val jobDate = Date.from(job.lastSuccess);
+//        holder.lastSuccess.text = "Last success: ${prettyTime.format(jobDate)}"
+//
+//        holder.parentLayout.setOnClickListener {
+//            Toast.makeText(context, "Clicked ${job.name}", Toast.LENGTH_LONG).show()
+//        }
     }
 
     override fun getItemCount(): Int {

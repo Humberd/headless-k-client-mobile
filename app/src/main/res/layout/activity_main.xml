@@ -25,26 +25,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:name="pl.humberd.headlesskclientmobile.WorkerStatus"
+                android:name="pl.humberd.headlesskclientmobile.fragments.WorkerStatusFragment"
                 android:id="@+id/workerStatusFragment"
                 />
 
 
     </android.support.v7.widget.Toolbar>
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
+    <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/myToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/swiperefresh">
-
-        <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recycler_view">
-        </android.support.v7.widget.RecyclerView>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:name="pl.humberd.headlesskclientmobile.fragments.JobsListFragment"
+            android:id="@+id/jobsListFragment"
+            />
 
 </RelativeLayout>
