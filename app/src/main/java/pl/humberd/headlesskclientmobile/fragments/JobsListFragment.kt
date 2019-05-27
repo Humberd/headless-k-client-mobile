@@ -54,7 +54,7 @@ class JobsListFragment : Fragment() {
     }
 
     private fun initRecyclerView(jobsList: List<JobStatusDto>) {
-        val adapter = RecyclerViewAdapter(jobsList)
+        val adapter = RecyclerViewAdapter(context!!, jobsList)
         view!!.findViewById<RecyclerView>(R.id.job_list_recycle_view).let {
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(context)

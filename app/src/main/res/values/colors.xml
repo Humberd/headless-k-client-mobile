@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#101010</color>
     <color name="colorPrimaryDark">#252525</color>
-    <color name="textColor">#D8D8D8</color>
+    <color name="textColorPrimary">#D8D8D8</color>
+    <color name="textColorSecondary">#A7A7A7</color>
+    <color name="iconColor">#727272</color>
+    <color name="errorBackgroundColor">#580003</color>
+    <color name="errorColor">#C55257</color>
+    <color name="successColor">#348639</color>
+
 </resources>

@@ -1,7 +1,7 @@
 package pl.humberd.headlesskclientmobile
 
-import android.annotation.SuppressLint
-import android.graphics.Color
+import android.content.Context
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +15,7 @@ import pl.humberd.headlesskclientmobile.apis.JobStatusDto
 import java.util.*
 
 class RecyclerViewAdapter(
+    private val context: Context,
     private val jobs: List<JobStatusDto>
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val prettyTime = PrettyTime()
@@ -24,7 +25,6 @@ class RecyclerViewAdapter(
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Log.d("RecycleViewAdapter", "onBindViewHolder: called");
 
@@ -42,15 +42,9 @@ class RecyclerViewAdapter(
             prettyTime.format(Date(job.lastCheck))
         }
 
-        holder.parentLayout.setBackgroundColor(
-            Color.parseColor(
-                when (job.status) {
-                    JobStatus.SUCCESS,
-                    JobStatus.ALREADY_DONE -> "#FFFFFF"
-                    JobStatus.ERROR -> "#FFCACC"
-                }
-            )
-        )
+        if (job.status === JobStatus.ERROR) {
+            holder.parentLayout.setBackgroundResource(R.color.errorBackgroundColor)
+        }
 
         holder.status.setImageResource(
             when (job.status) {
@@ -59,6 +53,17 @@ class RecyclerViewAdapter(
                 JobStatus.ERROR -> R.drawable.ic_close_black_24dp
             }
         )
+        holder.status.setColorFilter(
+            ResourcesCompat.getColor(
+                context.resources,
+                when (job.status) {
+                    JobStatus.SUCCESS,
+                    JobStatus.ALREADY_DONE -> R.color.successColor
+                    JobStatus.ERROR -> R.color.errorColor
+                }, null
+            )
+        )
+
 
     }
 
